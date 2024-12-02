@@ -16,7 +16,6 @@ function solveDay1(input) {
         }
     })
     console.log(similarity);
-    
 }
 
 solveDay1(example);

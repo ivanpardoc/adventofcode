@@ -9,8 +9,8 @@ function solveDay1(input) {
         rightList.push(element[1])
     });
     leftList.sort();
-    rightList.sort();
-    console.log(leftList, rightList);
+    rightList.sort(); 
+
     leftList.forEach((e, index) => {
         distance += Math.abs(rightList[index] - e);
     })
