@@ -15,7 +15,6 @@ function solve(input) {
             san.variants.push(splitted);
         });
         sanitizedRows.push(san);
-
     })
 
     sanitizedRows.forEach((san) => {
@@ -32,6 +31,7 @@ function solve(input) {
                         } else if (index === 0) {
                             ascending = false;
                         }
+
                         if (diff > 0 && index !== 0 && !ascending) {
                             valid = false;
                         }

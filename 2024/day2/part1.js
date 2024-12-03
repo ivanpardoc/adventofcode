@@ -6,6 +6,7 @@ function solve(input) {
         let valid = true;
         let ascending = true;
         let splittedRow = row.split(' ');
+
         splittedRow.forEach((c, index) => {
             if (splittedRow[index+1]) {
                 let diff = c - splittedRow[index+1];
@@ -14,6 +15,7 @@ function solve(input) {
                 } else if (index === 0) {
                     ascending = false;
                 }
+
                 if (diff > 0 && index !== 0 && !ascending) {
                     valid = false;
                 }
@@ -23,9 +25,8 @@ function solve(input) {
                 }
 
                 diff = Math.abs(diff);
+
                 if (diff > 3 || diff === 0) {
-                    console.log('here', c, splittedRow[index+1], diff, indexRow);
-                    
                     valid = false;
                 }
             } else {
@@ -36,7 +37,6 @@ function solve(input) {
         });
     });
     console.log(validRows.length);
-    
 }
 
 solve(example);
