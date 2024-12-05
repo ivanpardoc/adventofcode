@@ -1,9 +1,7 @@
-import permutator from '../utils.js';
 import { input, example } from './input.js';
 function solve(input) {
     const rules = {};
     const updates = [];
-    const alternativeUpdates = [];
     input.split('\n').forEach(element => {
         if (element.includes('|')) {
             let ruleSplit = element.split('|');
@@ -24,6 +22,7 @@ function solve(input) {
         }
     });
     checkUpdates(updates, rules);
+    let newValids = [];
 
     updates.filter((u) => !u.valid).forEach((u) => {
         let validCombination = false;
@@ -33,10 +32,8 @@ function solve(input) {
             let newArr = [invalidElement];
             let rulesInvalid = rules[invalidElement];
             arrayToCheck.elements.forEach((el, elInd) => {
-                if (elInd !== u.invalidIndex) {
+                if (elInd !== arrayToCheck.invalidIndex) {
                     if (rulesInvalid.before.includes(el)) {
-                        console.log('el', el);
-                        
                         newArr.unshift(el);
                     } else {
                         newArr.push(el)
@@ -44,20 +41,24 @@ function solve(input) {
                 }
             })
             let middle = Math.round(newArr.length / 2) - 1;
-            
-            let checkUpdateResult = checkUpdates([{ elements: newArr, valid: true, middle: parseInt(newArr[middle]) }], rules)[0];
+            let newObj = { elements: newArr, valid: true, middle: parseInt(newArr[middle]) };
+            let checkUpdateResult = checkUpdates([newObj], rules)[0];
+
             validCombination = checkUpdateResult.valid;
-            console.log(checkUpdateResult, checkUpdateResult.valid);
-            
+            if (validCombination) {
+                newValids.push(newObj)
+            }
             arrayToCheck = checkUpdateResult;
         }
-        // newUpdates.push({ elements: newArr, valid: true, middle: parseInt(newArr[middle]) });
     })
 
+    let totalSumN = 0;
+    newValids.forEach((u) => totalSumN += u.middle);
+    console.log(totalSumN);
+    
 }
-// solve(example);
-// 4609
-solve(example);
+
+solve(input);
 
 function checkUpdates(updates, rules) {
     updates.forEach((row, indexRow) => {
@@ -92,11 +93,3 @@ function checkUpdates(updates, rules) {
     })
     return updates;
 }
-
-// '13': { after: [], before: [ '97', '61', '29', '47', '75', '53' ] },
-// '29': { after: [ '13' ], before: [ '75', '97', '53', '61', '47' ] },
-// '47': { after: [ '53', '13', '61', '29' ], before: [ '97', '75' ] },
-// '53': { after: [ '29', '13' ], before: [ '47', '75', '61', '97' ] },
-// '61': { after: [ '13', '53', '29' ], before: [ '97', '47', '75' ] },
-// '75': { after: [ '29', '53', '47', '61', '13' ], before: [ '97' ] },
-// '97': { after: [ '13', '61', '47', '29', '53', '75' ], before: [] }
