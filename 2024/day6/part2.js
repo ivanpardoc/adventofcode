@@ -7,6 +7,7 @@ let direction = 'up';
 let loopCount = 0;
 
 function solve(input) {
+    console.time();
     let inputF = [];
     input = input.split('\n');
 
@@ -19,54 +20,43 @@ function solve(input) {
 
     inputF.forEach((r, rind) => {
         r.forEach((c, cind) => {
-            let copyInput = ogInput.map(row => [...row]); // Create a deep copy
-            copyInput[rind][cind] = '#';
-            direction = 'up';
-            
-            makePath(copyInput, true);
-        })
-        console.log('row', rind);
-
-    })
-
-    let row = '';
-    let xCount = 0;
-    inputF.forEach((r) => {
-        console.log(row);
-        row = '';
-        r.forEach((c) => {
-            row += c;
             if (c === 'X') {
-                xCount++;
+                let copyInput = ogInput.map(row => [...row]); // Create a deep copy
+                copyInput[rind][cind] = '#';
+                direction = 'up';
+                
+                makePath(copyInput, true);
             }
         })
-
     })
 
     console.log('total', loopCount);
+    console.timeEnd();
 }
 
 function makePath(inputF, checkForLoop = false) {
     let maxCol = inputF[0].length;
     let maxRow = inputF.length;
     let endReached = false;
-    let positionsVisited = [];
+    let positionsVisited = {};
     
     currentPointCol = ogCol;
     currentPointRow = ogRow;
 
     while (!endReached) {
-        let movement = currentPointRow + '' + currentPointCol + direction;
-        positionsVisited.push(movement);
-        if (positionsVisited.filter((v) => v === movement).length > 2 && checkForLoop) {
+        let movement = JSON.stringify(currentPointRow) + currentPointCol + direction;
+        
+        if (positionsVisited[movement] && positionsVisited[movement].count === 2) {
             endReached = true;
             loopCount++;
-            console.log('loop');
-            
+        } else {
+            if (positionsVisited[movement]) {
+                positionsVisited[movement].count = 2;
+            } else {   
+                positionsVisited[movement] = { count: 1 };
+            }
         }
         
-        // console.log(positionsVisited);
-
         if (direction === 'left') {
             if (currentPointCol - 1 < 0) {
                 endReached = true;
@@ -76,7 +66,6 @@ function makePath(inputF, checkForLoop = false) {
                 let nextPos = inputF[currentPointRow][currentPointCol - 1];
                 if (nextPos !== '#') {
                     inputF[currentPointRow][currentPointCol - 1] = 'X';
-                    print(inputF)
                     currentPointCol--;
                 } else {
                     direction = 'up';
@@ -88,12 +77,10 @@ function makePath(inputF, checkForLoop = false) {
                 endReached = true;
             }
             if (!endReached) {
-                // console.log(currentPointRow + 1, currentPointCol, endReached, maxRow);
                 let nextPos = inputF[currentPointRow + 1][currentPointCol];
 
                 if (nextPos !== '#') {
                     inputF[currentPointRow + 1][currentPointCol] = 'X';
-                    print(inputF)
                     currentPointRow++;
                 } else {
                     direction = 'left';
@@ -109,7 +96,6 @@ function makePath(inputF, checkForLoop = false) {
                 let nextPos = inputF[currentPointRow][currentPointCol + 1];
                 if (nextPos !== '#') {
                     inputF[currentPointRow][currentPointCol + 1] = 'X';
-                    print(inputF)
                     currentPointCol++;
                 } else {
                     direction = 'down';
@@ -124,7 +110,6 @@ function makePath(inputF, checkForLoop = false) {
                 let nextPos = inputF[currentPointRow - 1][currentPointCol];
                 if (nextPos !== '#') {
                     inputF[currentPointRow - 1][currentPointCol] = 'X';
-                    print(inputF)
                     currentPointRow--;
                 } else {
                     direction = 'right';
@@ -132,17 +117,6 @@ function makePath(inputF, checkForLoop = false) {
             }
         }
     }
-}
-
-function print(input) {
-    // let row = '';
-    // input.forEach((r) => {
-    //     // console.log(row);
-    //     row = '';
-    //     r.forEach((c) => {
-    //         row += c;
-    //     })
-    // })
 }
 
 function findStartingPoint(input) {

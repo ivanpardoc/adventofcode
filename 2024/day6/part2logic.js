@@ -47,7 +47,7 @@ function solve(input) {
                 endReached = true;
                 continue;
             }
-            // cap abaix, hash en el mateix row, en col menor
+
             let nextPos = inputF[currentPointRow + 1][currentPointCol];
 
             if (nextPos !== '#') {
@@ -72,7 +72,6 @@ function solve(input) {
                 continue;
             }
 
-            // a la dreta, row superior, mateix col
             let hashsfound = hashLocations.filter((v) => v.rowInd > currentPointRow && v.colInd === currentPointCol);
             let nextPos = inputF[currentPointRow][currentPointCol + 1];
             if (nextPos !== '#') {
