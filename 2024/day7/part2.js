@@ -11,8 +11,8 @@ function solve(input) {
     data.filter((d) => d.valid).forEach((v) => newValids.push(v.objective))
     let uniqueItems = [...new Set(newValids)]
     let sum = uniqueItems.reduce((pv, v) => pv+v, 0);
-    console.timeEnd();
     console.log('Total', sum);
+    console.timeEnd();
 }
 
 function checkValues(currentValue, num2, resultToCheck, allNumbers, currentIndex) {
