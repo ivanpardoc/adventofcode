@@ -2,12 +2,10 @@ import { input, example, example2 } from './input.js';
 
 function solve(input) {
     console.time();
-    console.log(input);
     let fileInd = '0';
     let newStr = [];
     input.split('').forEach((element, ind) => {
         for (let index = 0; index < parseInt(element); index++) {
-            // newStr += ind % 2 === 0 ? fileInd : '.';
             newStr.push(ind % 2 === 0 ? parseInt(fileInd) : '.')
         }
         if (ind % 2 === 0) {
@@ -16,26 +14,23 @@ function solve(input) {
         }
         fileInd = fileInd + '';
     });
-    // console.log(newStr);
-    let newStrSplitted = newStr;
 
-    let reverseInd = newStrSplitted.length - 1;
-    newStrSplitted.forEach((e, ind) => {
-        // console.log(e);
+    let reverseInd = newStr.length - 1;
+    newStr.forEach((e, ind) => {
         if (e === '.') {
-            while (newStrSplitted[reverseInd] === '.') {
+            while (newStr[reverseInd] === '.') {
                 reverseInd--;
             }
             if (reverseInd > ind) {
-                newStrSplitted[ind] = newStrSplitted[reverseInd];
-                newStrSplitted[reverseInd] = '.';
-                reverseInd = newStrSplitted.length - 1;
+                newStr[ind] = newStr[reverseInd];
+                newStr[reverseInd] = '.';
+                reverseInd = newStr.length - 1;
             }
         }
     })
-    console.log(newStrSplitted);
+
     let total = 0;
-    newStrSplitted.forEach((e, ind) => {
+    newStr.forEach((e, ind) => {
         if (e !== '.') {
             total += parseInt(e)*ind;
         }
@@ -45,6 +40,3 @@ function solve(input) {
 }
 
 solve(input);
-// 90119246415 TOO LOW
-// 6299243228569
-// solve(input);
