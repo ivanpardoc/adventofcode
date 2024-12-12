@@ -1,0 +1,60 @@
+zone:  [
+  { row: 0, col: 0, value: 4, parentId: 'Arow0char0' },
+  { row: 0, col: 1, value: 4, parentId: 'Arow0char0' },
+  { row: 0, col: 2, value: 4, parentId: 'Arow0char0' },
+  { row: 0, col: 3, value: 4, parentId: 'Arow0char0' }
+]
+horizontal walls [
+  { row: 0, col: 0, value: 4, parentId: 'Arow0char0' },
+  { row: 0, col: 1, value: 4, parentId: 'Arow0char0' },
+  { row: 0, col: 2, value: 4, parentId: 'Arow0char0' },
+  { row: 0, col: 3, value: 4, parentId: 'Arow0char0' }
+] 0
+zone:  [
+  { row: 1, col: 0, value: 4, parentId: 'Brow1char0' },
+  { row: 2, col: 0, value: 4, parentId: 'Brow1char0' },
+  { row: 2, col: 1, value: 4, parentId: 'Brow1char0' },
+  { row: 1, col: 1, value: 4, parentId: 'Brow1char0' }
+]
+true
+true
+horizontal walls [
+  { row: 1, col: 0, value: 4, parentId: 'Brow1char0' },
+  { row: 2, col: 0, value: 4, parentId: 'Brow1char0' },
+  { row: 2, col: 1, value: 4, parentId: 'Brow1char0' },
+  { row: 1, col: 1, value: 4, parentId: 'Brow1char0' }
+] 4
+zone:  [
+  { row: 1, col: 2, value: 4, parentId: 'Crow1char2' },
+  { row: 2, col: 2, value: 4, parentId: 'Crow1char2' },
+  { row: 2, col: 3, value: 4, parentId: 'Crow1char2' },
+  { row: 3, col: 3, value: 4, parentId: 'Crow1char2' }
+]
+true
+true
+true
+horizontal walls [
+  { row: 1, col: 2, value: 4, parentId: 'Crow1char2' },
+  { row: 2, col: 2, value: 4, parentId: 'Crow1char2' },
+  { row: 2, col: 3, value: 4, parentId: 'Crow1char2' },
+  { row: 3, col: 3, value: 4, parentId: 'Crow1char2' }
+] 6
+horizontal walls [ { row: 1, col: 3, value: 4, parentId: 'Drow1char3' } ] 4
+zone:  [
+  { row: 3, col: 0, value: 4, parentId: 'Erow3char0' },
+  { row: 3, col: 1, value: 4, parentId: 'Erow3char0' },
+  { row: 3, col: 2, value: 4, parentId: 'Erow3char0' }
+]
+horizontal walls [
+  { row: 3, col: 0, value: 4, parentId: 'Erow3char0' },
+  { row: 3, col: 1, value: 4, parentId: 'Erow3char0' },
+  { row: 3, col: 2, value: 4, parentId: 'Erow3char0' }
+] 0
+total {
+  Arow0char0: 0,
+  Brow1char0: 16,
+  Crow1char2: 24,
+  Drow1char3: 4,
+  Erow3char0: 0
+}
+default: 9.075ms
