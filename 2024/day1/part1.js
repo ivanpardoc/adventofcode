@@ -1,6 +1,6 @@
 import { day1Input, example } from './input.js';
 
-function solveDay1(input) {
+function solve(input) {
     let leftList = [];
     let rightList = [];
     let distance = 0;
@@ -18,5 +18,5 @@ function solveDay1(input) {
     
 }
 
-solveDay1(example);
-solveDay1(day1Input);
+solve(example);
+solve(day1Input);

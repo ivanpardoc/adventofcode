@@ -2,7 +2,7 @@ import { day1Input, example } from './inputDay1.js';
 
 const arrayOfNumbers = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
 const replacements = ['on1e', 'tw2o', 'thr3ee', 'fo4ur', 'fi5ve', 's6ix', 'sev7en', 'eigh8t', 'ni9ne'];
-function solveDay1(day1Input) {
+function solve(day1Input) {
 
     const array = [];
     day1Input.forEach(element => {
@@ -37,5 +37,5 @@ function solveDay1(day1Input) {
     console.log(sum);
 }
 
-solveDay1(day1Input);
-// solveDay1(example);
+solve(day1Input);
+// solve(example);

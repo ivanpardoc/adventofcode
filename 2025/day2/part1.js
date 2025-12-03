@@ -1,6 +1,6 @@
 import { input, example } from './input.js';
 
-function solveDay1(input) {
+function solve(input) {
     const arr = input.trim().split(',');
     const incorrectValues = []
     arr.forEach(element => {
@@ -29,4 +29,4 @@ function checkValid(number) {
     return true;
 }
 
-solveDay1(input);
+solve(input);

@@ -1,6 +1,6 @@
 import { day1Input, example } from './input.js';
 
-function solveDay1(input) {
+function solve(input) {
     let leftList = [];
     let rightList = [];
     let similarity = 0;
@@ -18,5 +18,5 @@ function solveDay1(input) {
     console.log(similarity);
 }
 
-solveDay1(example);
-solveDay1(day1Input);
+solve(example);
+solve(day1Input);

@@ -1,6 +1,6 @@
 import { input } from './input.js';
 
-function solveDay1(input) {
+function solve(input) {
     const t = input.trim().split('\n');
     let startingDial = 50;
     let count = 0;
@@ -31,7 +31,7 @@ function solveDay1(input) {
     console.log('Result', count);
 }
 
-solveDay1(input);
+solve(input);
 
 // 6081 too low
 // 6228 too high
