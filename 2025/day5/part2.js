@@ -1,4 +1,4 @@
-import { ranges, ingredients, exampleIngredients, exampleRanges } from './input.js';
+import { ranges, exampleRanges } from './input.js';
 
 function solve(ranges) {
     console.time();
@@ -6,32 +6,36 @@ function solve(ranges) {
     const rangesArr = ranges.trim().split('\n');
     const rangesArrObj = rangesArr.map((range) => {
         const [min, max] = range.split('-').map(Number);
-        return { min, max};
+        return { min, max, checked: false};
     });
-    let rangesArrObjBackup = rangesArrObj;
 
     rangesArrObj.sort((a, b) => a.min - b.min);
-    console.log(rangesArrObj.forEach((range) => console.log(range)));
-    // rangesArrObj.forEach((range, index) => {
-    //     let minFound = checkRanges(range.min);
-    // })
+    rangesArrObj.forEach((range, index) => {
+        let nextRange = index !== rangesArrObj.length-1 ? rangesArrObj[index+1] : undefined;
+        
+        if (!range.checked) {
+            if (nextRange) {
+                if (nextRange.min > range.max) {
+                    if (range.max < nextRange.min) {
+                        let calc = (range.max-range.min)+1;
+                        result += calc;
+                    } 
+                } else if (nextRange.max > range.max) {
+                    rangesArrObj[index+1].min = range.min;
+                } else {
+                    rangesArrObj[index+1].min = range.min;
+                    rangesArrObj[index+1].max = range.max;
+                }
+            } else {
+                let calc = (range.max-range.min)+1;
+                result += calc;
+            }
+        }
+        rangesArrObj[index].checked = true;
+    });
+
+    console.log('result', result)
     console.timeEnd();
 }
 
-
-function checkRanges(ingredient, rangesArrObj) {
-    let valid = false;
-    let indexFound = 0;
-    rangesArrObj.forEach((range, index) => {
-        if (!valid) {
-            if (ingredient >= range.min && ingredient <= range.max) {
-                valid = true;
-                indexFound = index;
-            }
-        }
-    });
-
-    return { valid, indexFound};
-}
-// solve(exampleRanges);
 solve(ranges);
